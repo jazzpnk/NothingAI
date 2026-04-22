@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NothingAI — Hybrid AI Production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F2EDE5;
+  --dark: #161614;
+  --dark2: #1F1F1C;
+  --gray: #888880;
+  --light-gray: #C8C4BC;
+  --accent: #006d8f;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--dark); font-family: var(--font-body); font-weight: 400; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 48px; background: var(--cream); border-bottom: 1px solid rgba(0,0,0,0.08); }
+.nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); text-decoration: none; line-height: 1; }
+.nav-logo span { display: block; font-size: 9px; font-weight: 400; letter-spacing: 0.2em; color: var(--gray); text-transform: uppercase; font-family: var(--font-body); }
+.nav-right { display: flex; align-items: center; gap: 40px; }
+.nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+.nav-links a { font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; }
+.lang-toggle { display: flex; align-items: center; gap: 0; border: 1px solid rgba(0,0,0,0.15); border-radius: 40px; overflow: hidden; }
+.lang-btn { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; padding: 8px 16px; cursor: pointer; color: var(--gray); transition: all 0.2s; }
+.lang-btn.active { background: var(--dark); color: var(--cream); }
+
+#hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 140px 48px 80px; }
+.hero-content { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 40px; }
+.hero-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(72px, 9vw, 148px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.01em; text-wrap: balance; }
+.hero-title .muted { color: var(--light-gray); }
+.hero-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; gap: 32px; padding-bottom: 12px; }
+.hero-sub { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; line-height: 1.8; text-transform: uppercase; color: var(--gray); text-align: right; max-width: 220px; }
+.btn-primary { display: inline-block; background: var(--dark); color: var(--cream); font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 18px 36px; border-radius: 40px; transition: background 0.2s, transform 0.2s; cursor: pointer; border: none; }
+.btn-primary:hover { background: var(--accent); transform: scale(1.02); }
+.hero-scroll { display: flex; align-items: center; gap: 16px; padding-top: 60px; }
+.hero-scroll-line { width: 60px; height: 1px; background: var(--dark); opacity: 0.2; }
+.hero-scroll-text { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); }
+
+.marquee-wrap { overflow: hidden; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); padding: 16px 0; background: var(--cream); }
+.marquee-inner { display: flex; gap: 0; white-space: nowrap; animation: marquee 20s linear infinite; }
+.marquee-inner span { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); padding: 0 32px; }
+.marquee-inner span.dot { color: var(--accent); padding: 0 8px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+#cases { background: var(--dark2); padding: 120px 48px; }
+.cases-header { margin-bottom: 64px; }
+.cases-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(52px, 6vw, 96px); text-transform: uppercase; line-height: 0.9; color: var(--cream); }
+.cases-title .muted { color: rgba(242,237,229,0.2); }
+.cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.case-card { background: #2A2A27; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; cursor: pointer; transition: border-color 0.2s; }
+.case-card:hover { border-color: rgba(255,255,255,0.2); }
+.case-thumb { width: 100%; aspect-ratio: 9/16; background: #222220; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.case-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.3s; }
+.case-card:hover .case-thumb img { opacity: 1; }
+.case-play { width: 56px; height: 56px; background: rgba(0,109,143,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; transition: transform 0.2s; }
+.case-card:hover .case-play { transform: scale(1.1); }
+.case-play::after { content: ''; border-left: 20px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 4px; }
+.case-info { padding: 20px 24px; }
+.case-specialty { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.case-title-text { font-family: var(--font-display); font-size: 20px; font-weight: 700; text-transform: uppercase; color: var(--cream); line-height: 1.2; }
+.case-meta { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 8px; letter-spacing: 0.08em; }
+
+#insight { background: var(--dark); color: var(--cream); padding: 120px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.insight-problems { display: flex; flex-direction: column; gap: 48px; }
+.problem-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.problem-title { font-family: var(--font-display); font-size: 28px; font-weight: 700; text-transform: uppercase; color: var(--cream); margin-bottom: 8px; }
+.problem-desc { font-size: 14px; line-height: 1.7; color: rgba(242,237,229,0.45); max-width: 300px; }
+.insight-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+.insight-big { font-family: var(--font-display); font-weight: 800; font-size: clamp(48px, 5vw, 88px); text-transform: uppercase; line-height: 0.95; color: var(--cream); margin-bottom: 40px; }
+.insight-big .muted { color: rgba(242,237,229,0.25); }
+.insight-desc { font-size: 15px; line-height: 1.8; color: rgba(242,237,229,0.55); max-width: 380px; }
+
+#services { padding: 120px 48px; background: var(--cream); }
+.section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
+.section-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(52px, 6vw, 100px); text-transform: uppercase; line-height: 0.9; margin-bottom: 80px; }
+.section-title .muted { color: var(--light-gray); }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.08); }
+.service-card { background: var(--cream); padding: 60px 48px; display: flex; flex-direction: column; gap: 24px; transition: background 0.3s; }
+.service-card:hover { background: #ECE7DF; }
+.service-num { font-family: var(--font-display); font-size: 72px; font-weight: 900; color: rgba(0,0,0,0.06); line-height: 1; }
+.service-name { font-family: var(--font-display); font-size: 36px; font-weight: 800; text-transform: uppercase; line-height: 1.1; }
+.service-desc { font-size: 14px; line-height: 1.8; color: var(--gray); max-width: 340px; }
+.service-features { list-style:none; margin-top:auto; display:flex; flex-direction:column; gap:8px; border-top:1px solid rgba(0,0,0,0.1); padding-top:20px; }
+.service-features li { font-size:12px; color:var(--gray); display:flex; gap:8px; }
+.service-features li span:first-child { color:var(--accent); }
+.service-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark); border-top: 1px solid rgba(0,0,0,0.12); padding-top: 20px; margin-top: auto; }
+
+#process { background: var(--dark); padding: 120px 48px; }
+.process-header { margin-bottom: 80px; }
+.process-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(52px, 7vw, 120px); text-transform: uppercase; line-height: 0.9; color: var(--cream); }
+.process-title .muted { color: rgba(242,237,229,0.2); }
+.process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid rgba(255,255,255,0.08); }
+.process-item { padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: 100px 1fr; gap: 32px; align-items: start; }
+.process-item:nth-child(odd) { padding-right: 64px; border-right: 1px solid rgba(255,255,255,0.08); }
+.process-item:nth-child(even) { padding-left: 64px; }
+.process-step-num { font-family: var(--font-display); font-size: 64px; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; }
+.process-step-name { font-family: var(--font-display); font-size: 32px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
+.process-step-desc { font-size: 13px; line-height: 1.8; color: rgba(242,237,229,0.4); max-width: 300px; }
+
+#pricing { padding: 120px 48px; background: var(--cream); }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); margin-top: 64px; border: 1px solid rgba(0,0,0,0.08); }
+.pricing-card { background: var(--cream); padding: 56px 48px; }
+.pricing-card.featured { background: var(--dark); color: var(--cream); }
+.pricing-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; background: var(--accent); color: white; padding: 5px 12px; margin-bottom: 32px; }
+.pricing-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.pricing-name-featured { color: rgba(242,237,229,0.5); }
+.pricing-price { font-family: var(--font-display); font-size: clamp(36px, 4vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.pricing-period { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 40px; }
+.pricing-card.featured .pricing-period { color: rgba(242,237,229,0.35); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+.pricing-features li { font-size: 14px; line-height: 1.5; display: flex; gap: 12px; align-items: flex-start; }
+.pricing-features li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+.pricing-card.featured .pricing-features li { color: rgba(242,237,229,0.65); }
+.btn-outline { display: inline-block; border: 1px solid rgba(0,0,0,0.2); color: var(--dark); font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 40px; transition: all 0.2s; cursor: pointer; background: transparent; }
+.btn-outline:hover { background: var(--dark); color: var(--cream); border-color: transparent; }
+.btn-primary-inv { display: inline-block; background: var(--cream); color: var(--dark); font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 40px; transition: all 0.2s; cursor: pointer; border: none; }
+.btn-primary-inv:hover { background: var(--accent); color: white; }
+.pricing-note { margin-top: 24px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); text-align: center; line-height: 2; }
+
+#faq { background: var(--dark2); padding: 120px 48px; }
+.faq-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 4vw, 64px); text-transform: uppercase; color: rgba(242,237,229,0.2); margin-bottom: 64px; }
+.faq-list { border-top: 1px solid rgba(255,255,255,0.06); }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 40px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.faq-item:hover .faq-q { color: var(--cream); }
+.faq-q { font-family: var(--font-display); font-size: clamp(22px, 2.5vw, 38px); font-weight: 700; text-transform: uppercase; color: rgba(242,237,229,0.6); line-height: 1.1; transition: color 0.2s; }
+.faq-a { font-size: 13px; line-height: 1.9; color: rgba(242,237,229,0.3); align-self: center; }
+
+#contact { background: var(--dark); padding: 120px 48px 80px; border-top: 1px solid rgba(255,255,255,0.06); }
+.contact-top { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; }
+.contact-heading { font-family: var(--font-display); font-weight: 900; font-size: clamp(52px, 6vw, 100px); text-transform: uppercase; color: var(--cream); line-height: 0.9; }
+.contact-heading .muted { color: rgba(242,237,229,0.2); }
+.contact-info { display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; }
+.contact-line { font-family: var(--font-display); font-size: clamp(18px, 2vw, 32px); font-weight: 700; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+.contact-line:hover { color: var(--accent); }
+.contact-note { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(242,237,229,0.25); }
+.contact-bottom { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,237,229,0.3); }
+.footer-tagline { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(242,237,229,0.15); margin-top: 6px; }
+.footer-nav { display: flex; gap: 32px; list-style: none; }
+.footer-nav a { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(242,237,229,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-nav a:hover { color: var(--cream); }
+.footer-copy { font-size: 11px; letter-spacing: 0.1em; color: rgba(242,237,229,0.15); }
+
+[data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+[data-reveal].visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .nav-right { gap: 16px; }
+  #hero { padding: 100px 24px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 32px; }
+  .hero-right { align-items: flex-start; }
+  .hero-sub { text-align: left; }
+  #insight { grid-template-columns: 1fr; padding: 80px 24px; gap: 60px; }
+  #services { padding: 80px 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { padding: 40px 28px; }
+  #cases { padding: 80px 24px; }
+  .cases-grid { grid-template-columns: 1fr; gap: 12px; }
+  .case-thumb { aspect-ratio: 9/14; }
+  #process { padding: 80px 24px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-item { padding: 40px 0 !important; border-right: none !important; grid-template-columns: 60px 1fr; gap: 20px; }
+  .process-step-num { font-size: 40px; }
+  #pricing { padding: 80px 24px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card { padding: 40px 28px; }
+  #faq { padding: 80px 24px; }
+  .faq-item { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
+  #contact { padding: 80px 24px 60px; }
+  .contact-top { grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+  .contact-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .footer-nav { flex-wrap: wrap; gap: 16px; }
+  .section-title { margin-bottom: 48px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Nothing AI <span>Creative Tech Lab</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav.services">Услуги</a></li>
+      <li><a href="#cases" data-i18n="nav.cases">Кейсы</a></li>
+      <li><a href="#pricing" data-i18n="nav.pricing">Цены</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="uz">UZ</button>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-content">
+    <h1 class="hero-title" data-reveal>
+      <span data-i18n="hero.line1">Ваша</span><br>
+      <span class="muted" data-i18n="hero.line2">экспертиза</span><br>
+      <span data-i18n="hero.line3">оцифрована.</span>
+    </h1>
+    <div class="hero-right" data-reveal>
+      <p class="hero-sub" data-i18n="hero.sub">AI-видео для стоматологий<br>и эстетической медицины.<br>Ваш бренд работает 24/7.</p>
+      <a href="#contact" class="btn-primary" data-i18n="hero.cta">Запросить доступ</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text" data-i18n="hero.scroll">Скролл вниз</span>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>AI Digital Twins</span><span class="dot">·</span>
+    <span data-i18n="m.reels">Вертикальные Reels</span><span class="dot">·</span>
+    <span data-i18n="m.series">Нейро-сериалы</span><span class="dot">·</span>
+    <span data-i18n="m.dental">Стоматология</span><span class="dot">·</span>
+    <span data-i18n="m.aesthetic">Эстетическая медицина</span><span class="dot">·</span>
+    <span data-i18n="m.count">30 роликов / месяц</span><span class="dot">·</span>
+    <span>Hybrid Production</span><span class="dot">·</span>
+    <span>AI Digital Twins</span><span class="dot">·</span>
+    <span data-i18n="m.reels">Вертикальные Reels</span><span class="dot">·</span>
+    <span data-i18n="m.series">Нейро-сериалы</span><span class="dot">·</span>
+    <span data-i18n="m.dental">Стоматология</span><span class="dot">·</span>
+    <span data-i18n="m.aesthetic">Эстетическая медицина</span><span class="dot">·</span>
+    <span data-i18n="m.count">30 роликов / месяц</span><span class="dot">·</span>
+    <span>Hybrid Production</span><span class="dot">·</span>
+  </div>
+</div>
+
+<section id="cases">
+  <div class="cases-header" data-reveal>
+    <h2 class="cases-title"><span data-i18n="cases.t1">Кейсы</span><br><span class="muted" data-i18n="cases.t2">& работы</span></h2>
+  </div>
+  <div class="cases-grid">
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/wZwTWtra7bE">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/wZwTWtra7bE/hqdefault.jpg" alt="" onerror="this.style.display='none'"><div class="case-play"></div></div>
+      <div class="case-info">
+        <div class="case-specialty" data-i18n="cases.sp1">Стоматология</div>
+        <div class="case-title-text" data-i18n="cases.c1">Никогда не чисти зубы по утрам</div>
+        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
+      </div>
+    </div>
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/hjIvZUqZTwg">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/hjIvZUqZTwg/hqdefault.jpg" alt="" onerror="this.style.display='none'"><div class="case-play"></div></div>
+      <div class="case-info">
+        <div class="case-specialty" data-i18n="cases.sp1">Стоматология</div>
+        <div class="case-title-text" data-i18n="cases.c2">Что такое «Герметизация фиссур»</div>
+        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
+      </div>
+    </div>
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/Ko6-iukG2HQ">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/Ko6-iukG2HQ/hqdefault.jpg" alt="" onerror="this.style.display='none'"><div class="case-play"></div></div>
+      <div class="case-info">
+        <div class="case-specialty" data-i18n="cases.sp2">Эстетическая медицина</div>
+        <div class="case-title-text" data-i18n="cases.c3">Потеря зуба меняет лицо навсегда</div>
+        <div class="case-meta">AI Avatar · Implantologia · Reels</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="insight">
+  <div class="insight-problems" data-reveal>
+    <div class="problem-item">
+      <div class="problem-label" data-i18n="ins.p1l">Проблема 01</div>
+      <div class="problem-title" data-i18n="ins.p1t">Творческий тупик</div>
+      <div class="problem-desc" data-i18n="ins.p1d">Промывание идей и выгорание от однотипных съёмок.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-label" data-i18n="ins.p2l">Проблема 02</div>
+      <div class="problem-title" data-i18n="ins.p2t">Производственный ад</div>
+      <div class="problem-desc" data-i18n="ins.p2d">Зависимость от локаций, света, моделей и съёмочных групп.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-label" data-i18n="ins.p3l">Проблема 03</div>
+      <div class="problem-title" data-i18n="ins.p3t">Лимит времени</div>
+      <div class="problem-desc" data-i18n="ins.p3d">Нельзя масштабировать бизнес, пока вы привязаны к камере.</div>
+    </div>
+  </div>
+  <div class="insight-right" data-reveal>
+    <div class="insight-tag" data-i18n="ins.tag">Инсайт</div>
+    <div class="insight-big" data-i18n="ins.big">Мы отделяем<br><span class="muted">смыслы</span><br>от съёмок.</div>
+    <div class="insight-desc" data-i18n="ins.desc">Вы владеете медиа-империей, не присутствуя на площадке. Контент стал налогом — мы делаем его за вас.</div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-label" data-reveal data-i18n="srv.label">Что мы делаем</div>
+  <h2 class="section-title" data-reveal><span data-i18n="srv.t1">Наши</span><br><span class="muted" data-i18n="srv.t2">продукты</span></h2>
+  <div class="services-grid">
+    <div class="service-card" data-reveal>
+      <div class="service-num">01</div>
+      <div class="service-name" data-i18n="srv.s1n">AI-цифровые<br>двойники</div>
+      <div class="service-desc" data-i18n="srv.s1d">Один раз отснимем вас для аватара — получаете цифрового двойника, который ведёт блог за вас. 30 Reels в месяц. На любом языке.</div>
+      <ul class="service-features">
+        <li><span>—</span><span data-i18n="srv.s1f1">Инженерные сценарии с триггерами внимания</span></li>
+        <li><span>—</span><span data-i18n="srv.s1f2">Премиум-постпродакшн под ключ</span></li>
+        <li><span>—</span><span>Reels · TikTok · Shorts</span></li>
+      </ul>
+      <div class="service-tag" data-i18n="srv.s1tag">Личный бренд работает 24/7 →</div>
+    </div>
+    <div class="service-card" data-reveal>
+      <div class="service-num">02</div>
+      <div class="service-name" data-i18n="srv.s2n">AI-сериалы</div>
+      <div class="service-desc" data-i18n="srv.s2d">Создаём уникальных AI-персонажей с постоянной внешностью, характером и голосом. Визуальный уровень HBO в 45 секунд.</div>
+      <ul class="service-features">
+        <li><span>—</span><span data-i18n="srv.s2f1">5 сюжетных веток × 4 серии = 20 роликов</span></li>
+        <li><span>—</span><span data-i18n="srv.s2f2">Экосистема дистрибуции контента</span></li>
+        <li><span>—</span><span data-i18n="srv.s2f3">Конверсия 5–15% в подписку</span></li>
+      </ul>
+      <div class="service-tag" data-i18n="srv.s2tag">Аккаунт → медиа-франшиза →</div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="process-header" data-reveal>
+    <h2 class="process-title"><span data-i18n="prc.t1">Как мы</span><br><span class="muted" data-i18n="prc.t2">работаем.</span></h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-item" data-reveal>
+      <div class="process-step-num">01.</div>
+      <div><div class="process-step-name" data-i18n="prc.s1n">Подписание</div><div class="process-step-desc" data-i18n="prc.s1d">Фиксируем объём, сроки и формат видео. 100% предоплата — работа начинается в день оплаты.</div></div>
+    </div>
+    <div class="process-item" data-reveal>
+      <div class="process-step-num">02.</div>
+      <div><div class="process-step-name" data-i18n="prc.s2n">Сценарии</div><div class="process-step-desc" data-i18n="prc.s2d">Пишем скрипты, хуки и структуру каждого ролика. Согласуем до производства.</div></div>
+    </div>
+    <div class="process-item" data-reveal>
+      <div class="process-step-num">03.</div>
+      <div><div class="process-step-name" data-i18n="prc.s3n">Аватары</div><div class="process-step-desc" data-i18n="prc.s3d">Организуем съёмку лица вашего бренда и превращаем его в AI-аватар.</div></div>
+    </div>
+    <div class="process-item" data-reveal>
+      <div class="process-step-num">04.</div>
+      <div><div class="process-step-name" data-i18n="prc.s4n">Доставка</div><div class="process-step-desc" data-i18n="prc.s4d">Первый пакет готов за 7 дней. Ролики сдаются по графику ежемесячно.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-label" data-reveal data-i18n="pr.label">Прозрачное ценообразование</div>
+  <h2 class="section-title" data-reveal><span data-i18n="pr.t1">Цены</span><br><span class="muted" data-i18n="pr.t2">& пакеты</span></h2>
+  <div class="pricing-grid">
+    <div class="pricing-card" data-reveal>
+      <div class="pricing-name" data-i18n="pr.p1n">Пакет Стандарт</div>
+      <div class="pricing-price" data-i18n="pr.p1p">39 000 000 сум</div>
+      <div class="pricing-period" data-i18n="pr.p1per">/ месяц · мин. 3 месяца</div>
+      <ul class="pricing-features">
+        <li data-i18n="pr.p1f1">30 обычных роликов (45 сек.)</li>
+        <li data-i18n="pr.p1f2">Вертикальный формат: Reels, TikTok, Shorts</li>
+        <li data-i18n="pr.p1f3">Сценарии и согласование</li>
+        <li data-i18n="pr.p1f4">AI-генерация и постпродакшн</li>
+        <li data-i18n="pr.p1f5">Итого от 117 000 000 сум</li>
+      </ul>
+      <a href="#contact" class="btn-outline" data-i18n="pr.cta1">Начать</a>
+    </div>
+    <div class="pricing-card featured" data-reveal>
+      <div class="pricing-badge" data-i18n="pr.badge">Популярный</div>
+      <div class="pricing-name pricing-name-featured" data-i18n="pr.p2n">Пакет Микс</div>
+      <div class="pricing-price" data-i18n="pr.p2p">51 000 000 сум</div>
+      <div class="pricing-period" data-i18n="pr.p2per">/ месяц · мин. 3 месяца</div>
+      <ul class="pricing-features">
+        <li data-i18n="pr.p2f1">20 обычных + 10 премиум роликов</li>
+        <li data-i18n="pr.p2f2">Премиум: имиджевое · AI-кадры</li>
+        <li data-i18n="pr.p2f3">Сценарии и согласование</li>
+        <li data-i18n="pr.p2f4">AI-генерация и постпродакшн</li>
+        <li data-i18n="pr.p2f5">Итого от 153 000 000 сум</li>
+      </ul>
+      <a href="#contact" class="btn-primary-inv" data-i18n="pr.cta2">Начать</a>
+    </div>
+  </div>
+  <div class="pricing-note" data-i18n="pr.note">Оцифровка аватара — разовая услуга · 24 000 000 сум · Обычный ролик — 1 300 000 сум · Премиум — 2 500 000 сум</div>
+</section>
+
+<section id="faq">
+  <div class="faq-title" data-reveal data-i18n="faq.title">Часто задаваемые вопросы</div>
+  <div class="faq-list">
+    <div class="faq-item" data-reveal>
+      <div class="faq-q" data-i18n="faq.q1">Как работает AI-аватар?</div>
+      <div class="faq-a" data-i18n="faq.a1">Один раз снимаем вас на камеру — лицо, голос, мимику. Создаём цифровую копию. Дальше аватар воспроизводит любой текст с вашей внешностью без вашего участия.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <div class="faq-q" data-i18n="faq.q2">Сколько времени занимает запуск?</div>
+      <div class="faq-a" data-i18n="faq.a2">После подписания договора и оплаты — первый пакет готов за 7 рабочих дней. Включая сценарии, согласование и производство.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <div class="faq-q" data-i18n="faq.q3">Сколько это стоит?</div>
+      <div class="faq-a" data-i18n="faq.a3">Пакет Стандарт — 39 млн сум/мес (30 роликов). Пакет Микс — 51 млн сум/мес. Минимальный срок — 3 месяца.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <div class="faq-q" data-i18n="faq.q4">Нужна ли студийная съёмка?</div>
+      <div class="faq-a" data-i18n="faq.a4">Только один раз — для создания аватара. Можем приехать в ваш офис или организовать съёмку. После этого — никаких съёмочных групп.</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="contact-top" data-reveal>
+    <h2 class="contact-heading"><span data-i18n="con.h1">Свяжитесь</span><br><span class="muted" data-i18n="con.h2">с нами.</span></h2>
+    <div class="contact-info">
+      <div class="contact-note" data-i18n="con.note">Обсудить сотрудничество</div>
+      <a href="tel:+998901784627" class="contact-line">+998 90 178 46 27</a>
+      <a href="https://t.me/andreyvernadski" class="contact-line">tg: @andreyvernadski</a>
+    </div>
+  </div>
+  <div class="contact-bottom">
+    <div>
+      <div class="footer-logo">Nothing AI</div>
+      <div class="footer-tagline">Creative Tech Lab · Hybrid AI Production</div>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#services" data-i18n="nav.services">Услуги</a></li>
+      <li><a href="#cases" data-i18n="nav.cases">Кейсы</a></li>
+      <li><a href="#pricing" data-i18n="nav.pricing">Цены</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 NothingAI</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  ru: {
+    'nav.services':'Услуги','nav.cases':'Кейсы','nav.pricing':'Цены','nav.contact':'Контакты',
+    'hero.line1':'Ваша','hero.line2':'экспертиза','hero.line3':'оцифрована.',
+    'hero.sub':'AI-видео для стоматологий<br>и эстетической медицины.<br>Ваш бренд работает 24/7.',
+    'hero.cta':'Запросить доступ','hero.scroll':'Скролл вниз',
+    'm.reels':'Вертикальные Reels','m.series':'Нейро-сериалы','m.dental':'Стоматология',
+    'm.aesthetic':'Эстетическая медицина','m.count':'30 роликов / месяц',
+    'cases.t1':'Кейсы','cases.t2':'& работы','cases.sp1':'Стоматология','cases.sp2':'Эстетическая медицина',
+    'cases.c1':'Никогда не чисти зубы по утрам','cases.c2':'Что такое «Герметизация фиссур»','cases.c3':'Потеря зуба меняет лицо навсегда',
+    'ins.p1l':'Проблема 01','ins.p1t':'Творческий тупик','ins.p1d':'Промывание идей и выгорание от однотипных съёмок.',
+    'ins.p2l':'Проблема 02','ins.p2t':'Производственный ад','ins.p2d':'Зависимость от локаций, света, моделей и съёмочных групп.',
+    'ins.p3l':'Проблема 03','ins.p3t':'Лимит времени','ins.p3d':'Нельзя масштабировать бизнес, пока вы привязаны к камере.',
+    'ins.tag':'Инсайт','ins.big':'Мы отделяем<br><span class="muted">смыслы</span><br>от съёмок.',
+    'ins.desc':'Вы владеете медиа-империей, не присутствуя на площадке. Контент стал налогом — мы делаем его за вас.',
+    'srv.label':'Что мы делаем','srv.t1':'Наши','srv.t2':'продукты',
+    'srv.s1n':'AI-цифровые<br>двойники','srv.s1d':'Один раз отснимем вас для аватара — получаете цифрового двойника, который ведёт блог за вас. 30 Reels в месяц. На любом языке.',
+    'srv.s1f1':'Инженерные сценарии с триггерами внимания','srv.s1f2':'Премиум-постпродакшн под ключ','srv.s1tag':'Личный бренд работает 24/7 →',
+    'srv.s2n':'AI-сериалы','srv.s2d':'Создаём уникальных AI-персонажей с постоянной внешностью, характером и голосом. Визуальный уровень HBO в 45 секунд.',
+    'srv.s2f1':'5 сюжетных веток × 4 серии = 20 роликов','srv.s2f2':'Экосистема дистрибуции контента','srv.s2f3':'Конверсия 5–15% в подписку','srv.s2tag':'Аккаунт → медиа-франшиза →',
+    'prc.t1':'Как мы','prc.t2':'работаем.',
+    'prc.s1n':'Подписание','prc.s1d':'Фиксируем объём, сроки и формат видео. 100% предоплата — работа начинается в день оплаты.',
+    'prc.s2n':'Сценарии','prc.s2d':'Пишем скрипты, хуки и структуру каждого ролика. Согласуем до производства.',
+    'prc.s3n':'Аватары','prc.s3d':'Организуем съёмку лица вашего бренда и превращаем его в AI-аватар.',
+    'prc.s4n':'Доставка','prc.s4d':'Первый пакет готов за 7 дней. Ролики сдаются по графику ежемесячно.',
+    'pr.label':'Прозрачное ценообразование','pr.t1':'Цены','pr.t2':'& пакеты','pr.badge':'Популярный',
+    'pr.p1n':'Пакет Стандарт','pr.p1p':'39 000 000 сум','pr.p1per':'/ месяц · мин. 3 месяца',
+    'pr.p1f1':'30 обычных роликов (45 сек.)','pr.p1f2':'Вертикальный формат: Reels, TikTok, Shorts',
+    'pr.p1f3':'Сценарии и согласование','pr.p1f4':'AI-генерация и постпродакшн','pr.p1f5':'Итого от 117 000 000 сум',
+    'pr.cta1':'Начать','pr.p2n':'Пакет Микс','pr.p2p':'51 000 000 сум','pr.p2per':'/ месяц · мин. 3 месяца',
+    'pr.p2f1':'20 обычных + 10 премиум роликов','pr.p2f2':'Премиум: имиджевое · AI-кадры',
+    'pr.p2f3':'Сценарии и согласование','pr.p2f4':'AI-генерация и постпродакшн','pr.p2f5':'Итого от 153 000 000 сум',
+    'pr.cta2':'Начать','pr.note':'Оцифровка аватара — разовая услуга · 24 000 000 сум · Обычный ролик — 1 300 000 · Премиум — 2 500 000 сум',
+    'faq.title':'Часто задаваемые вопросы',
+    'faq.q1':'Как работает AI-аватар?','faq.a1':'Один раз снимаем вас на камеру — лицо, голос, мимику. Создаём цифровую копию. Дальше аватар воспроизводит любой текст с вашей внешностью без вашего участия.',
+    'faq.q2':'Сколько времени занимает запуск?','faq.a2':'После подписания договора и оплаты — первый пакет готов за 7 рабочих дней.',
+    'faq.q3':'Сколько это стоит?','faq.a3':'Пакет Стандарт — 39 млн сум/мес (30 роликов). Пакет Микс — 51 млн сум/мес. Минимальный срок — 3 месяца.',
+    'faq.q4':'Нужна ли студийная съёмка?','faq.a4':'Только один раз — для создания аватара. После этого — никаких съёмочных групп.',
+    'con.h1':'Свяжитесь','con.h2':'с нами.','con.note':'Обсудить сотрудничество',
+  },
+  uz: {
+    'nav.services':'Xizmatlar','nav.cases':'Loyihalar','nav.pricing':'Narxlar','nav.contact':'Aloqa',
+    'hero.line1':'Sizning','hero.line2':'tajribangiz','hero.line3':'raqamlashtrildi.',
+    'hero.sub':'Stomatologiya va estetik<br>tibbiyot uchun AI-video.<br>Brendingiz 24/7 ishlaydi.',
+    'hero.cta':'Murojaat qilish','hero.scroll':'Pastga aylantiring',
+    'm.reels':'Vertikal Reels','m.series':'AI-seriallar','m.dental':'Stomatologiya',
+    'm.aesthetic':'Estetik tibbiyot','m.count':'30 video / oy',
+    'cases.t1':'Loyihalar','cases.t2':'& ishlar','cases.sp1':'Stomatologiya','cases.sp2':'Estetik tibbiyot',
+    'cases.c1':'Ertalab tish yuvmang','cases.c2':'Fissurani germetizatsiya qilish nima','cases.c3':'Tish yo\'qolishi yuzingizni o\'zgartiradi',
+    'ins.p1l':'Muammo 01','ins.p1t':'Ijodiy to\'siq','ins.p1d':'Bir xil suratga olishlardan charchash va g\'oyalarning tugashi.',
+    'ins.p2l':'Muammo 02','ins.p2t':'Ishlab chiqarish jannami','ins.p2d':'Joylashuvlar, yorug\'lik, modellar va jamoaga bog\'liqlik.',
+    'ins.p3l':'Muammo 03','ins.p3t':'Vaqt cheklovi','ins.p3d':'Kameraga bog\'liq ekan, biznesni kengaytirish mumkin emas.',
+    'ins.tag':'G\'oya','ins.big':'Biz <span class="muted">g\'oyalarni</span><br>suratga olishdan<br>ajratamiz.',
+    'ins.desc':'Siz maydonga chiqmasdan media-imperiyaga egalik qilasiz. Kontent soliqqa aylandi — uni biz to\'laymiz.',
+    'srv.label':'Biz nima qilamiz','srv.t1':'Bizning','srv.t2':'mahsulotlar',
+    'srv.s1n':'AI raqamli<br>egizaklar','srv.s1d':'Bir marta suratga olinasiz — oyiga 30 Reels yaratiladigan raqamli egizagingiz bo\'ladi. Istalgan tilda. Mukammal mimika bilan.',
+    'srv.s1f1':'Diqqat triggerlari bilan muhandislik stsenariylar','srv.s1f2':'Premium post-ishlab chiqarish, tayyor','srv.s1tag':'Shaxsiy brend 24/7 ishlaydi →',
+    'srv.s2n':'AI seriallar','srv.s2d':'Doimiy tashqi ko\'rinish, xarakter va ovozga ega noyob AI personajlar yaratamiz. 45 soniyada HBO darajasidagi vizual.',
+    'srv.s2f1':'5 syujet × 4 qism = 20 video','srv.s2f2':'Kontent tarqatish ekotizimi','srv.s2f3':'5–15% obunachilarga konversiya','srv.s2tag':'Akkaunt → media-franshiza →',
+    'prc.t1':'Biz qanday','prc.t2':'ishlaymiz.',
+    'prc.s1n':'Shartnoma','prc.s1d':'Hajm, muddatlar va format belgilanadi. 100% oldindan to\'lov — to\'lov kuni ish boshlanadi.',
+    'prc.s2n':'Stsenariylar','prc.s2d':'Har bir video uchun skriptlar, xuklar va tuzilma yoziladi. Ishlab chiqarishdan oldin kelishiladi.',
+    'prc.s3n':'Avatarlar','prc.s3d':'Brendingiz yuzini studiyada yoki ofisda suratga olamiz va AI-avatarga aylantiramiz.',
+    'prc.s4n':'Yetkazib berish','prc.s4d':'Birinchi paket 7 kunda tayyor. Videolar oylik jadval bo\'yicha topshiriladi.',
+    'pr.label':'Shaffof narxlar','pr.t1':'Narxlar','pr.t2':'& paketlar','pr.badge':'Mashhur',
+    'pr.p1n':'Standart paket','pr.p1p':'39 000 000 so\'m','pr.p1per':'/ oy · min. 3 oy',
+    'pr.p1f1':'30 ta oddiy video (45 sek.)','pr.p1f2':'Vertikal format: Reels, TikTok, Shorts',
+    'pr.p1f3':'Stsenariylar va kelishish','pr.p1f4':'AI-generatsiya va post-ishlov','pr.p1f5':'Jami 117 000 000 so\'mdan',
+    'pr.cta1':'Boshlash','pr.p2n':'Miks paketi','pr.p2p':'51 000 000 so\'m','pr.p2per':'/ oy · min. 3 oy',
+    'pr.p2f1':'20 ta oddiy + 10 ta premium video','pr.p2f2':'Premium: imijli · AI-kadrlar',
+    'pr.p2f3':'Stsenariylar va kelishish','pr.p2f4':'AI-generatsiya va post-ishlov','pr.p2f5':'Jami 153 000 000 so\'mdan',
+    'pr.cta2':'Boshlash','pr.note':'Avatar raqamlashtirish — bir martalik xizmat · 24 000 000 so\'m · Oddiy video — 1 300 000 · Premium — 2 500 000 so\'m',
+    'faq.title':'Ko\'p beriladigan savollar',
+    'faq.q1':'AI-avatar qanday ishlaydi?','faq.a1':'Bir marta yuz, ovoz va mimikangizni suratga olamiz. Raqamli nusxa yaratamiz. Keyin avatar sizning ko\'rinishingizda istalgan matnni ishtirokingizisiz o\'qiydi.',
+    'faq.q2':'Ishga tushirish qancha vaqt oladi?','faq.a2':'Shartnoma imzolangach va to\'lov amalga oshirilgach — birinchi paket 7 ish kunida tayyor bo\'ladi.',
+    'faq.q3':'Bu qancha turadi?','faq.a3':'Standart paket — 39 mln so\'m/oy (30 video). Miks paketi — 51 mln so\'m/oy. Minimal muddat — 3 oy.',
+    'faq.q4':'Studiya suratga olish kerakmi?','faq.a4':'Faqat bir marta — avatar yaratish uchun. Keyin hech qanday suratga olish guruhi kerak emas.',
+    'con.h1':'Biz bilan','con.h2':'bog\'laning.','con.note':'Hamkorlikni muhokama qilish',
+  }
+};
+
+let lang = localStorage.getItem('lang-uz') || 'ru';
+
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('lang-uz', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[l][el.dataset.i18n];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+}
+
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+applyLang(lang);
+
+document.querySelectorAll('.case-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const url = card.dataset.url;
+    if (!url) return;
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+setTimeout(() => {
+  document.querySelectorAll('[data-reveal]:not(.visible)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  });
+}, 100);
+</script>
+</body>
+</html>
