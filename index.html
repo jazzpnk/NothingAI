@@ -406,6 +406,16 @@ nav {
     rgba(255,255,255,0.02) 9px
   );
 }
+.case-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+.case-card:hover .case-thumb img { opacity: 1; }
 .case-play {
   width: 56px; height: 56px;
   background: rgba(232,68,42,0.9);
@@ -802,7 +812,117 @@ nav {
   transform: none;
 }
 
-/* Tweaks panel */
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 24px;
+  }
+  .nav-links { display: none; }
+
+  #hero {
+    padding: 100px 24px 60px;
+  }
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero-right {
+    align-items: flex-start;
+  }
+  .hero-sub { text-align: left; }
+
+  #insight {
+    grid-template-columns: 1fr;
+    padding: 80px 24px;
+    gap: 60px;
+  }
+
+  #services {
+    padding: 80px 24px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-card { padding: 40px 28px; }
+
+  #cases {
+    padding: 80px 24px;
+  }
+  .cases-header { margin-bottom: 40px; }
+  .cases-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .case-thumb { aspect-ratio: 9/14; }
+
+  #process {
+    padding: 80px 24px;
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-item {
+    padding: 40px 0 !important;
+    border-right: none !important;
+    border-left: none !important;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+  }
+  .process-step-num { font-size: 40px; }
+
+  #pricing {
+    padding: 80px 24px;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-card { padding: 40px 28px; }
+
+  #faq {
+    padding: 80px 24px;
+  }
+  .faq-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 28px 0;
+  }
+
+  #contact {
+    padding: 80px 24px 60px;
+  }
+  .contact-top {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .contact-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .footer-nav { flex-wrap: wrap; gap: 16px; }
+
+  .section-title { margin-bottom: 48px; }
+
+  #stats {
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: auto auto;
+    padding: 60px 24px;
+    row-gap: 40px;
+  }
+  .stat-item { padding: 0 24px; }
+  .stats-divider:last-of-type { display: none; }
+}
+
+@media (max-width: 480px) {
+  #stats {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .stats-divider { display: none; }
+  .stat-item { padding: 0; }
+}
+
 #tweaks-panel {
   display: none;
   position: fixed;
@@ -901,6 +1021,78 @@ nav {
   </div>
 </div>
 
+<!-- VIDEO MODAL -->
+<div id="video-modal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;">
+  <button onclick="closeModal()" style="position:absolute;top:24px;right:32px;background:none;border:none;color:white;font-size:32px;cursor:pointer;opacity:0.6;line-height:1;">✕</button>
+  <div id="video-modal-inner" style="width:min(380px,90vw);aspect-ratio:9/16;background:#000;position:relative;">
+    <!-- Сюда вставляется видео или iframe -->
+  </div>
+</div>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="cases-header" data-reveal>
+    <h2 class="cases-title">
+      Кейсы<br><span class="muted">& работы</span>
+    </h2>
+  </div>
+  <div class="cases-grid">
+
+    <!-- 
+      КАК ДОБАВИТЬ ВИДЕО:
+      
+      Вариант A — файл в репозитории:
+        data-video="videos/case1.mp4"
+      
+      Вариант B — YouTube (скопируй ID из ссылки youtube.com/watch?v=ЭТОТ_ID):
+        data-youtube="ЭТОТ_ID"
+    -->
+
+    <div class="case-card" data-reveal
+         data-youtube="wZwTWtra7bE"
+         data-url="https://www.youtube.com/shorts/wZwTWtra7bE">
+      <div class="case-thumb">
+        <img src="https://img.youtube.com/vi/wZwTWtra7bE/hqdefault.jpg" alt="" onerror="this.style.display='none'">
+        <div class="case-play"></div>
+      </div>
+      <div class="case-info">
+        <div class="case-specialty">Стоматология</div>
+        <div class="case-title">Никогда не чисти зубы по утрам</div>
+        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-reveal
+         data-youtube="hjIvZUqZTwg"
+         data-url="https://www.youtube.com/shorts/hjIvZUqZTwg">
+      <div class="case-thumb">
+        <img src="https://img.youtube.com/vi/hjIvZUqZTwg/hqdefault.jpg" alt="" onerror="this.style.display='none'">
+        <div class="case-play"></div>
+      </div>
+      <div class="case-info">
+        <div class="case-specialty">Стоматология</div>
+        <div class="case-title">Что такое «Герметизация фиссур»</div>
+        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-reveal
+         data-youtube="Ko6-iukG2HQ"
+         data-url="https://www.youtube.com/shorts/Ko6-iukG2HQ">
+      <div class="case-thumb">
+        <img src="https://img.youtube.com/vi/Ko6-iukG2HQ/hqdefault.jpg" alt="" onerror="this.style.display='none'">
+        <div class="case-play"></div>
+      </div>
+      <div class="case-info">
+        <div class="case-specialty">Эстетическая медицина</div>
+        <div class="case-title">Потеря зуба меняет лицо навсегда</div>
+        <div class="case-meta">AI Avatar · Implantologia · Reels</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- INSIGHT / PROBLEMS -->
 <section id="insight">
   <div class="insight-problems" data-reveal>
@@ -933,29 +1125,6 @@ nav {
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="stat-item" data-reveal>
-    <div class="stat-num">30</div>
-    <div class="stat-label">Роликов<br>в месяц</div>
-  </div>
-  <div class="stats-divider"></div>
-  <div class="stat-item" data-reveal>
-    <div class="stat-num">45″</div>
-    <div class="stat-label">Идеальный<br>формат</div>
-  </div>
-  <div class="stats-divider"></div>
-  <div class="stat-item" data-reveal>
-    <div class="stat-num">24/7</div>
-    <div class="stat-label">Работает<br>без вас</div>
-  </div>
-  <div class="stats-divider"></div>
-  <div class="stat-item" data-reveal>
-    <div class="stat-num">3+</div>
-    <div class="stat-label">Языка<br>на старте</div>
-  </div>
-</section>
-
 <!-- SERVICES -->
 <section id="services">
   <div class="section-label" data-reveal>Что мы делаем</div>
@@ -965,79 +1134,29 @@ nav {
   <div class="services-grid">
     <div class="service-card" data-reveal>
       <div class="service-num">01</div>
-      <div class="service-name">AI Digital<br>Twins</div>
+      <div class="service-name">AI-цифровые<br>двойники</div>
       <div class="service-desc">
         Один раз отснимем вас для аватара — получаете цифрового двойника, который ведёт блог за вас. 30 Reels в месяц. На любом языке. С идеальной мимикой и подачей.
       </div>
+      <ul style="list-style:none;margin-top:auto;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(0,0,0,0.1);padding-top:20px;">
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> Инженерные сценарии с триггерами внимания</li>
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> Премиум-постпродакшн под ключ</li>
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> Reels · TikTok · Shorts</li>
+      </ul>
       <div class="service-tag">Личный бренд работает 24/7 →</div>
     </div>
     <div class="service-card" data-reveal>
       <div class="service-num">02</div>
-      <div class="service-name">Нейро-<br>сериалы</div>
+      <div class="service-name">AI-сериалы</div>
       <div class="service-desc">
         Создаём уникальных AI-персонажей с постоянной внешностью, характером и голосом. Вертикальные сериалы с ценностями вашего бренда. Визуальный уровень HBO в 45 секунд.
       </div>
+      <ul style="list-style:none;margin-top:auto;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(0,0,0,0.1);padding-top:20px;">
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> 5 сюжетных веток × 4 серии = 20 роликов</li>
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> Экосистема дистрибуции контента</li>
+        <li style="font-size:12px;color:var(--gray);display:flex;gap:8px;"><span style="color:var(--accent);">—</span> Конверсия 5–15% в подписку</li>
+      </ul>
       <div class="service-tag">Аккаунт → медиа-франшиза →</div>
-    </div>
-    <div class="service-card" data-reveal>
-      <div class="service-num">03</div>
-      <div class="service-name">Инженерные<br>сценарии</div>
-      <div class="service-desc">
-        Используем триггеры внимания и психологию продаж. Каждый ролик спроектирован как система убеждения, а не просто красивая картинка.
-      </div>
-      <div class="service-tag">Конверсия 5–15% в подписку →</div>
-    </div>
-    <div class="service-card" data-reveal>
-      <div class="service-num">04</div>
-      <div class="service-name">Экосистема<br>под ключ</div>
-      <div class="service-desc">
-        Берём на себя всё — от генерации идеи до дистрибуции контента. Вы получаете готовую систему, а не набор инструментов. Никакой «сырой нейронки».
-      </div>
-      <div class="service-tag">Reels · TikTok · Shorts →</div>
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section id="cases">
-  <div class="cases-header" data-reveal>
-    <h2 class="cases-title">
-      Кейсы<br><span class="muted">& работы</span>
-    </h2>
-  </div>
-  <div class="cases-grid">
-    <div class="case-card" data-reveal>
-      <div class="case-thumb">
-        <div class="case-thumb-bg"></div>
-        <div class="case-play"></div>
-      </div>
-      <div class="case-info">
-        <div class="case-specialty">Стоматология</div>
-        <div class="case-title">Никогда не чисти зубы по утрам</div>
-        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
-      </div>
-    </div>
-    <div class="case-card" data-reveal>
-      <div class="case-thumb">
-        <div class="case-thumb-bg"></div>
-        <div class="case-play"></div>
-      </div>
-      <div class="case-info">
-        <div class="case-specialty">Стоматология</div>
-        <div class="case-title">Что такое «Герметизация фиссур»</div>
-        <div class="case-meta">AI Avatar · Д-р Ульяненко · Reels</div>
-      </div>
-    </div>
-    <div class="case-card" data-reveal>
-      <div class="case-thumb">
-        <div class="case-thumb-bg"></div>
-        <div class="case-play"></div>
-      </div>
-      <div class="case-info">
-        <div class="case-specialty">Эстетическая медицина</div>
-        <div class="case-title">Потеря зуба меняет лицо навсегда</div>
-        <div class="case-meta">AI Avatar · Implantologia · Reels</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1197,6 +1316,23 @@ nav {
 </div>
 
 <script>
+// Video cards — open YouTube in new tab
+document.querySelectorAll('.case-card').forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => {
+    const url = card.dataset.url;
+    if (url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  });
+});
+
 // Scroll reveal
 const revealEls = document.querySelectorAll('[data-reveal]');
 const observer = new IntersectionObserver((entries) => {
@@ -1205,7 +1341,11 @@ const observer = new IntersectionObserver((entries) => {
 revealEls.forEach(el => observer.observe(el));
 
 // Tweaks
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"accent":"#E8442A","bg":"#F2EDE5","font":"'Barlow Condensed', sans-serif"}/*EDITMODE-END*/;
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#006d8f",
+  "bg": "#F2EDE5",
+  "font": "'Anton', sans-serif"
+}/*EDITMODE-END*/;
 
 function applyTweaks(t) {
   document.documentElement.style.setProperty('--accent', t.accent);
@@ -1239,5 +1379,3 @@ window.parent.postMessage({type:'__edit_mode_available'}, '*');
 </script>
 </body>
 </html>
-
- 
