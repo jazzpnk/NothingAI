@@ -154,20 +154,24 @@ nav a, nav button { color: #ffffff; font-weight: 800; }
   font-size: 12px;
   font-weight: 600;
 }
+.hero-foot { color: #ffffff; }
+.hero-foot > .hero-foot-left > span,
+.hero-foot > .hero-foot-right > span,
+.hero-foot > .hero-foot-center { mix-blend-mode: difference; color: #ffffff; }
+.hero-cta { color: #000000 !important; border-color: transparent; background: #C21B0B !important; mix-blend-mode: normal; }
+.hero-cta:hover { background: #000000 !important; color: #C21B0B !important; }
 .hero-foot-left, .hero-foot-right { display: flex; flex-direction: column; gap: 6px; }
 .hero-foot-right { text-align: right; align-items: flex-end; }
 .hero-foot-center { text-align: center; font-size: 11px; opacity: 0.85; }
 .hero-cta {
   display: inline-block; margin-top: 6px;
   padding: 10px 18px;
-  background: var(--paper); color: var(--ink);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.02em;
   border: none; cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
-.hero-cta:hover { background: var(--ink); color: var(--paper); }
 
 /* SECTIONS shared */
 section.sec { padding: 72px 24px; border-top: 1px solid var(--line); }
@@ -526,6 +530,63 @@ section.sec.dark .faq-q { color: #ffffff; }
 
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 [data-reveal].visible { opacity: 1; transform: none; }
+
+/* BRANDS MARQUEE */
+.brands-sec { padding-top: 56px; padding-bottom: 56px; }
+.brands-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  color: var(--muted);
+}
+.brands-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.brands-track {
+  display: flex;
+  width: max-content;
+  animation: brands-scroll 32s linear infinite;
+}
+.brands-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 80px;
+  padding-right: 80px;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(40px, 5vw, 64px);
+  flex-shrink: 0;
+}
+.brand-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.brands-marquee:hover .brand-logo img { opacity: 1; }
+html.palette-carbon .brand-logo img,
+section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
+@keyframes brands-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.brands-marquee:hover .brands-track { animation-play-state: paused; }
+@media (max-width: 768px) {
+  .brands-row { gap: 48px; padding-right: 48px; }
+  .brand-logo { font-size: 28px; }
+}
 </style>
 </head>
 <body>
@@ -560,10 +621,7 @@ section.sec.dark .faq-q { color: #ffffff; }
       <a href="#contact" class="hero-cta" data-i18n="hero.cta">Связаться</a>
     </div>
     <div class="hero-foot-center" data-i18n="hero.scroll">↓ Скролл</div>
-    <div class="hero-foot-right">
-      <span data-i18n="hero.line1">Оцифруем</span>
-      <span data-i18n="hero.line2">вашу экспертность</span>
-    </div>
+    <div class="hero-foot-right"></div>
   </div>
 </section>
 
@@ -576,23 +634,23 @@ section.sec.dark .faq-q { color: #ffffff; }
     </div>
   </div>
   <div class="cases-grid">
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/wZwTWtra7bE">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/wZwTWtra7bE/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/8vn2p2kABMo">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/8vn2p2kABMo/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/watch?v=VMl4Sk9Ui50">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/VMl4Sk9Ui50/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/watch?v=7ktkNKpL8G0">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/7ktkNKpL8G0/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/oamz-Vlvfvs">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/oamz-Vlvfvs/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/V62DfAAUvNY">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/V62DfAAUvNY/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/JbF8hvCdUFs">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/JbF8hvCdUFs/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/c537PtoyK08">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/c537PtoyK08/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/HcOxRLC2hUA">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/HcOxRLC2hUA/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/8Q1TwLIHQco">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/8Q1TwLIHQco/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/hjIvZUqZTwg">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/hjIvZUqZTwg/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/MxDfJpgLs_A">
+      <div class="case-thumb"><img src="https://img.youtube.com/vi/MxDfJpgLs_A/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
     </div>
   </div>
 </section>
@@ -600,7 +658,7 @@ section.sec.dark .faq-q { color: #ffffff; }
 <section class="sec dark" id="problems">
   <div class="sec-head" data-reveal>
     <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="problems.title">Эксперт не может вести блог сам — и&nbsp;это нормально</h2>
+    <h2 class="sec-title" data-i18n="problems.title">Врач не может вести блог сам — и&nbsp;это нормально</h2>
   </div>
   <div class="problems-grid">
     <div class="problem-item" data-reveal>
@@ -631,33 +689,33 @@ section.sec.dark .faq-q { color: #ffffff; }
   </div>
   <div class="services-grid">
     <div class="service-card" data-reveal>
-      <div class="service-video placeholder" data-video-slot="s1">VIDEO</div>
+      <video class="service-video" src="assets/services/s1.mp4" autoplay muted loop playsinline preload="metadata"></video>
       <div class="service-name" data-i18n="services.s1n">AI-цифровые двойники</div>
-      <div class="service-desc" data-i18n="services.s1d">Один раз отснимем вас для аватара — получаете цифрового двойника, который ведёт блог за вас. 30 Reels в месяц. На любом языке.</div>
+      <div class="service-desc" data-i18n="services.s1d">Одна съёмка — получаете цифрового двойника, которого мы используем для создания контента в ваших соцсетях на любых языках.</div>
       <ul class="service-features">
-        <li data-i18n="services.s1f1">— Сценарии с триггерами внимания</li>
+        <li data-i18n="services.s1f1">— Сценарии на основе доказательной медицины</li>
         <li data-i18n="services.s1f2">— Премиум-постпродакшн под ключ</li>
         <li>— Reels · TikTok · Shorts</li>
       </ul>
     </div>
     <div class="service-card" data-reveal>
-      <div class="service-video placeholder" data-video-slot="s2">VIDEO</div>
+      <video class="service-video" src="assets/services/s2.mp4" autoplay muted loop playsinline preload="metadata"></video>
       <div class="service-name" data-i18n="services.s2n">AI-сериалы</div>
       <div class="service-desc" data-i18n="services.s2d">Уникальные AI-персонажи с постоянной внешностью, характером и голосом. Вертикальные сериалы под ценности бренда.</div>
       <ul class="service-features">
-        <li data-i18n="services.s2f1">— 5 веток × 4 серии = 20 роликов</li>
-        <li data-i18n="services.s2f2">— Экосистема дистрибуции</li>
+        <li data-i18n="services.s2f1">— Каждая серия сюжета раскрывает ваш продукт или услугу</li>
+        <li data-i18n="services.s2f2">— Органические охваты</li>
         <li data-i18n="services.s2f3">— Конверсия 5–15% в подписку</li>
       </ul>
     </div>
     <div class="service-card" data-reveal>
       <video class="service-video" src="assets/services/s3.mp4" autoplay muted loop playsinline preload="metadata"></video>
       <div class="service-name" data-i18n="services.s3n">Продуктовое видео</div>
-      <div class="service-desc" data-i18n="services.s3d">Помещение вашего продукта внутрь существующих AI-видео и сериалов студии. Бренд встраивается в сюжет естественно — без баннерной рекламы.</div>
+      <div class="service-desc" data-i18n="services.s3d">Создание индивидуального ролика с вашим продуктом на уровне высококачественного продакшна — нативно, кинематографично и без шаблонной рекламы.</div>
       <ul class="service-features">
-        <li data-i18n="services.s3f1">— Интеграция в готовые AI-сериалы</li>
-        <li data-i18n="services.s3f2">— Сценарная упаковка под бренд</li>
-        <li data-i18n="services.s3f3">— Нативное появление в кадре</li>
+        <li data-i18n="services.s3f1">— Демонстрация сильных сторон вашего продукта</li>
+        <li data-i18n="services.s3f2">— Визуальный стиль на основе вашего брендбука</li>
+        <li data-i18n="services.s3f3">— Различные форматы видео под наружную рекламу и соцсети</li>
       </ul>
     </div>
   </div>
@@ -666,13 +724,13 @@ section.sec.dark .faq-q { color: #ffffff; }
 <section class="sec dark" id="process">
   <div class="sec-head" data-reveal>
     <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="process.title">Четыре этапа от подписи до&nbsp;первого пакета</h2>
+    <h2 class="sec-title" data-i18n="process.title">Ваш путь от подписи до&nbsp;регулярного контента</h2>
   </div>
   <div class="process-grid">
     <div class="process-item" data-reveal>
       <div class="process-step-num">— 01</div>
       <div class="process-step-name" data-i18n="process.s1n">Подписание</div>
-      <div class="process-step-desc" data-i18n="process.s1d">Фиксируем объём, сроки и формат. 100% предоплата — работа начинается в день оплаты.</div>
+      <div class="process-step-desc" data-i18n="process.s1d">Фиксируем объём, сроки и формат. Работа начинается в день оплаты.</div>
     </div>
     <div class="process-item" data-reveal>
       <div class="process-step-num">— 02</div>
@@ -682,12 +740,12 @@ section.sec.dark .faq-q { color: #ffffff; }
     <div class="process-item" data-reveal>
       <div class="process-step-num">— 03</div>
       <div class="process-step-name" data-i18n="process.s3n">Аватары</div>
-      <div class="process-step-desc" data-i18n="process.s3d">Снимаем лицо бренда в студии или в офисе. Превращаем в AI-аватар.</div>
+      <div class="process-step-desc" data-i18n="process.s3d">Снимаем лицо бренда в студии или в клинике. Превращаем в AI-аватар.</div>
     </div>
     <div class="process-item" data-reveal>
       <div class="process-step-num">— 04</div>
       <div class="process-step-name" data-i18n="process.s4n">Доставка</div>
-      <div class="process-step-desc" data-i18n="process.s4d">Первый пакет за 7 дней. Дальше — ежемесячно по графику.</div>
+      <div class="process-step-desc" data-i18n="process.s4d">Регулярная подача и публикация согласованного контента.</div>
     </div>
   </div>
 </section>
@@ -695,7 +753,7 @@ section.sec.dark .faq-q { color: #ffffff; }
 <section class="sec" id="pricing">
   <div class="sec-head" data-reveal>
     <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="pricing.title">Что мы даём за&nbsp;месяц работы</h2>
+    <h2 class="sec-title" data-i18n="pricing.title">Наше предложение</h2>
   </div>
   <div class="pricing-grid">
     <div class="pricing-card" data-reveal>
@@ -723,7 +781,30 @@ section.sec.dark .faq-q { color: #ffffff; }
       <a href="#contact" class="pricing-cta" data-i18n="pricing.cta2">Связаться</a>
     </div>
   </div>
-  <div class="pricing-note" data-i18n="pricing.note">Точную смету мы рассчитываем индивидуально под ваш проект во время обсуждения</div>
+  <div class="pricing-note" data-i18n="pricing.note">Точную смету мы рассчитываем индивидуально под ваш проект</div>
+</section>
+
+<section class="sec brands-sec" id="brands">
+  <h3 class="brands-title" data-i18n="brands.title">Опыт работы с дорогими брендами</h3>
+  <div class="brands-marquee" aria-hidden="false">
+    <div class="brands-track">
+      <!-- track is duplicated for seamless infinite scroll -->
+      <div class="brands-row">
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+      </div>
+      <div class="brands-row" aria-hidden="true">
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="sec dark" id="faq">
@@ -756,7 +837,7 @@ section.sec.dark .faq-q { color: #ffffff; }
     <h2 class="contact-heading" data-i18n="contact.heading">Связаться<br>со&nbsp;студией</h2>
     <div class="contact-info">
       <div class="contact-name" data-i18n="contact.name">САНЖ</div>
-      <a href="/cdn-cgi/l/email-protection#fb889a979e88bb95948f9392959c9a92d5898e"><span class="__cf_email__" data-cfemail="287b69646d7b6866677c6061666f6961067a7d">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#3c4f5d50594f7c5253485455525b5d55124e49" class="no-cfemail"><span class="__cf_email__" data-cfemail="eab9aba6afb9aaa4a5bea2a3a4adaba3c4b8bf">[email&#160;protected]</span></a>
       <a href="https://t.me/tthaSanzh" class="contact-tg-btn" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
@@ -784,29 +865,30 @@ const T = {
     'manifesto.text':'Что происходит, когда эксперт перестаёт снимать видео сам? <span class="muted">Может ли цифровой двойник нести голос, мимику и характер автора так, чтобы аудитория не заметила подмены? Как выглядит блог, который выходит каждый день — без оператора, света и сценаристов? Это вопросы, которые мы решили закрыть продуктом.</span>',
     'cases.title':'Работы студии','cases.sub':'',
     'cases.c1':'Зубы по утрам','cases.c2':'Герметизация фиссур','cases.c3':'Пики глюкозы','cases.c4':'Усталость лица','cases.c5':'Имплантат за день','cases.c6':'Эст. реставрация',
-    'problems.title':'Эксперт не может вести блог сам — и&nbsp;это нормально',
+    'problems.title':'Врач не может вести блог сам — и&nbsp;это нормально',
     'problems.p1t':'Нет времени','problems.p1d':'Вы лечите пациентов, а не снимаете видео. На контент не остаётся ни времени, ни сил.',
     'problems.p2t':'Съёмка — это хлопоты','problems.p2d':'Оператор, свет, студия, расписание — отдельная работа, которую никто не хочет делать.',
     'problems.p3t':'Конкуренты уже там','problems.p3d':'Пока вы без контента, другие клиники набирают пациентов через соцсети.',
     'services.title':'Наши услуги','services.sub':'',
-    'services.s1n':'AI-цифровые двойники','services.s1d':'Один раз отснимем вас для аватара — получаете цифрового двойника, который ведёт блог за вас. 30 Reels в месяц. На любом языке.',
-    'services.s1f1':'— Сценарии с триггерами внимания','services.s1f2':'— Премиум-постпродакшн под ключ',
+    'services.s1n':'AI-цифровые двойники','services.s1d':'Одна съёмка — получаете цифрового двойника, которого мы используем для создания контента в ваших соцсетях на любых языках.',
+    'services.s1f1':'— Сценарии на основе доказательной медицины','services.s1f2':'— Премиум-постпродакшн под ключ',
     'services.s2n':'AI-сериалы','services.s2d':'Уникальные AI-персонажи с постоянной внешностью, характером и голосом. Вертикальные сериалы под ценности бренда.',
-    'services.s2f1':'— 5 веток × 4 серии = 20 роликов','services.s2f2':'— Экосистема дистрибуции','services.s2f3':'— Конверсия 5–15% в подписку',
-    'services.s3n':'Продуктовое видео','services.s3d':'Помещение вашего продукта внутрь существующих AI-видео и сериалов студии. Бренд встраивается в сюжет естественно — без баннерной рекламы.',
-    'services.s3f1':'— Интеграция в готовые AI-сериалы','services.s3f2':'— Сценарная упаковка под бренд','services.s3f3':'— Нативное появление в кадре',
-    'process.title':'Четыре этапа от подписи до&nbsp;первого пакета',
-    'process.s1n':'Подписание','process.s1d':'Фиксируем объём, сроки и формат. 100% предоплата — работа начинается в день оплаты.',
+    'services.s2f1':'— Каждая серия сюжета раскрывает ваш продукт или услугу','services.s2f2':'— Органические охваты','services.s2f3':'— Конверсия 5–15% в подписку',
+    'services.s3n':'Продуктовое видео','services.s3d':'Создание индивидуального ролика с вашим продуктом на уровне высококачественного продакшна — нативно, кинематографично и без шаблонной рекламы.',
+    'services.s3f1':'— Демонстрация сильных сторон вашего продукта','services.s3f2':'— Визуальный стиль на основе вашего брендбука','services.s3f3':'— Различные форматы видео под наружную рекламу и соцсети',
+    'process.title':'Ваш путь от подписи до&nbsp;регулярного контента',
+    'process.s1n':'Подписание','process.s1d':'Фиксируем объём, сроки и формат. Работа начинается в день оплаты.',
     'process.s2n':'Сценарии','process.s2d':'Пишем скрипты, хуки и структуру каждого ролика под задачи бизнеса.',
-    'process.s3n':'Аватары','process.s3d':'Снимаем лицо бренда в студии или в офисе. Превращаем в AI-аватар.',
-    'process.s4n':'Доставка','process.s4d':'Первый пакет за 7 дней. Дальше — ежемесячно по графику.',
-    'pricing.title':'Что мы даём за&nbsp;месяц работы',
+    'process.s3n':'Аватары','process.s3d':'Снимаем лицо бренда в студии или в клинике. Превращаем в AI-аватар.',
+    'process.s4n':'Доставка','process.s4d':'Регулярная подача и публикация согласованного контента.',
+    'pricing.title':'Наше предложение',
     'pricing.p1name':'Пакет Стандарт','pricing.p1period':'Стоимость обсуждается индивидуально',
     'pricing.p1f1':'30 обычных роликов (45 сек.)','pricing.p1f2':'Reels · TikTok · Shorts','pricing.p1f3':'Сценарии и согласование','pricing.p1f4':'AI-генерация и постпродакшн','pricing.p1f5':'Рекомендуем сотрудничество от 3 месяцев',
     'pricing.cta1':'Связаться',
     'pricing.p2name':'Пакет Микс','pricing.p2period':'Стоимость обсуждается индивидуально',
     'pricing.p2f1':'20 обычных + 10 премиум роликов','pricing.p2f2':'Премиум: имиджевое · AI-кадры','pricing.p2f3':'Сценарии и согласование','pricing.p2f4':'AI-генерация и постпродакшн','pricing.p2f5':'Рекомендуем сотрудничество от 3 месяцев',
-    'pricing.cta2':'Связаться','pricing.note':'Точную смету мы рассчитываем индивидуально под ваш проект во время обсуждения',
+    'pricing.cta2':'Связаться','pricing.note':'Точную смету мы рассчитываем индивидуально под ваш проект',
+    'brands.title':'— Опыт работы с дорогими брендами',
     'faq.title':'Часто задаваемые вопросы',
     'faq.q1':'Как работает AI-аватар?','faq.a1':'Один раз снимаем вас на камеру — лицо, голос, мимику. Создаём цифровую копию. Дальше аватар воспроизводит любой текст с вашей внешностью без вашего участия.',
     'faq.q2':'Сколько занимает запуск?','faq.a2':'После подписания договора и оплаты — 2 недели на согласование форматов, создание аватара и согласование сценариев. Затем начинается продакшн. Первый пакет готов за месяц.',
@@ -823,29 +905,30 @@ const T = {
     'manifesto.text':'What happens when the expert stops filming themselves? <span class="muted">Can a digital twin carry the voice, expressions and character of its author so the audience doesn\'t notice the swap? What does a blog look like when it ships every day — without a camera crew, lighting or scriptwriters? These are the questions we decided to close with a product.</span>',
     'cases.title':'Studio work','cases.sub':'',
     'cases.c1':'Brushing teeth','cases.c2':'Fissure sealing','cases.c3':'Glucose spikes','cases.c4':'Facial fatigue','cases.c5':'Same-day implant','cases.c6':'Aesth. restoration',
-    'problems.title':'An expert can\'t run a blog alone — and&nbsp;that\'s ok',
+    'problems.title':'A doctor can\'t run a blog alone — and&nbsp;that\'s ok',
     'problems.p1t':'No time','problems.p1d':'You treat patients, not film videos. There\'s no time or energy left for content.',
     'problems.p2t':'Filming is a hassle','problems.p2d':'Camera crew, lighting, studio, scheduling — a separate job nobody wants to take on.',
     'problems.p3t':'Competitors are there','problems.p3d':'While you\'re offline, other clinics are pulling patients through social.',
     'services.title':'Our services','services.sub':'',
-    'services.s1n':'AI digital twins','services.s1d':'We film you once for the avatar — you get a digital twin that runs the blog. 30 Reels a month. In any language.',
-    'services.s1f1':'— Scripts engineered with attention triggers','services.s1f2':'— Premium turnkey post-production',
+    'services.s1n':'AI digital twins','services.s1d':'One shoot — you get a digital twin we use to create content for your social media in any language.',
+    'services.s1f1':'— Scripts based on evidence-based medicine','services.s1f2':'— Premium turnkey post-production',
     'services.s2n':'AI series','services.s2d':'Unique AI characters with consistent face, voice and personality. Vertical series carrying brand values.',
-    'services.s2f1':'— 5 arcs × 4 episodes = 20 videos','services.s2f2':'— Full distribution ecosystem','services.s2f3':'— 5–15% follower conversion',
-    'services.s3n':'Product video','services.s3d':'Embedding your product inside existing AI videos and studio series. The brand fits the storyline naturally — no banner ads.',
-    'services.s3f1':'— Integration into ready AI series','services.s3f2':'— Scripted brand packaging','services.s3f3':'— Native on-screen appearance',
-    'process.title':'Four stages from signature to&nbsp;first batch',
-    'process.s1n':'Agreement','process.s1d':'We lock in scope, timeline, format. 100% upfront — work starts on the day of payment.',
+    'services.s2f1':'— Each episode of the storyline reveals your product or service','services.s2f2':'— Organic reach','services.s2f3':'— 5–15% follower conversion',
+    'services.s3n':'Product video','services.s3d':'Creating a custom video featuring your product at a high-end production level — native, cinematic, and free from generic advertising.',
+    'services.s3f1':'— Showcasing the strengths of your product','services.s3f2':'— Visual style based on your brand book','services.s3f3':'— Various video formats for outdoor advertising and social media',
+    'process.title':'Your path from signature to&nbsp;regular content',
+    'process.s1n':'Agreement','process.s1d':'We lock in scope, timeline, format. Work starts on the day of payment.',
     'process.s2n':'Scripts','process.s2d':'We write scripts, hooks and structure for every video aligned with your business.',
-    'process.s3n':'Avatars','process.s3d':'We film your brand face at our studio or your office. Turn it into an AI avatar.',
-    'process.s4n':'Delivery','process.s4d':'First batch in 7 days. Then monthly on a fixed schedule.',
-    'pricing.title':'What you get per&nbsp;month',
+    'process.s3n':'Avatars','process.s3d':'We film your brand face at our studio or your clinic. Turn it into an AI avatar.',
+    'process.s4n':'Delivery','process.s4d':'Regular delivery and publication of approved content.',
+    'pricing.title':'Our offer',
     'pricing.p1name':'Standard plan','pricing.p1period':'Pricing discussed individually',
     'pricing.p1f1':'30 standard videos (45 sec.)','pricing.p1f2':'Reels · TikTok · Shorts','pricing.p1f3':'Scripts and approval','pricing.p1f4':'AI generation and post-production','pricing.p1f5':'We recommend 3+ months engagement',
     'pricing.cta1':'Contact',
     'pricing.p2name':'Mix plan','pricing.p2period':'Pricing discussed individually',
     'pricing.p2f1':'20 standard + 10 premium videos','pricing.p2f2':'Premium: cinematic · AI visuals','pricing.p2f3':'Scripts and approval','pricing.p2f4':'AI generation and post-production','pricing.p2f5':'We recommend 3+ months engagement',
-    'pricing.cta2':'Contact','pricing.note':'We calculate a precise estimate individually for your project during the discussion',
+    'pricing.cta2':'Contact','pricing.note':'We calculate a precise estimate individually for your project',
+    'brands.title':'— Worked with high-end brands',
     'faq.title':'Frequently asked questions',
     'faq.q1':'How does an AI avatar work?','faq.a1':'We film you once — face, voice, expressions. We build a digital copy. The avatar then reproduces any text in your likeness without your participation.',
     'faq.q2':'How long does launch take?','faq.a2':'After signing and payment — 2 weeks for format alignment, avatar creation and script approval. Then production begins. The first batch is ready in one month.',
