@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOTHING AI — N.2026.01 (UZ)</title>
+<meta name="description" content="ИИ Продакшн для врачей и премум брендов / Shifokorlar va premium brendlar uchun AI prodakshn">
+<meta property="og:title" content="ИИ Продакшн для врачей и премум брендов / Shifokorlar va premium brendlar uchun AI prodakshn">
+<meta property="og:description" content="ИИ Продакшн для врачей и премум брендов / Shifokorlar va premium brendlar uchun AI prodakshn">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ИИ Продакшн для врачей и премум брендов / Shifokorlar va premium brendlar uchun AI prodakshn">
+<meta name="twitter:description" content="ИИ Продакшн для врачей и премум брендов / Shifokorlar va premium brendlar uchun AI prodakshn">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -530,6 +537,62 @@ section.sec.dark .faq-q { color: #ffffff; }
 
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 [data-reveal].visible { opacity: 1; transform: none; }
+
+/* BRANDS MARQUEE */
+.brands-sec { padding-top: 56px; padding-bottom: 56px; }
+.brands-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  color: var(--muted);
+}
+.brands-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.brands-track {
+  display: flex;
+  width: max-content;
+  animation: brands-scroll 15s linear infinite;
+}
+.brands-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 80px;
+  padding-right: 80px;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(40px, 5vw, 64px);
+  flex-shrink: 0;
+}
+.brand-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.brands-marquee:hover .brand-logo img { opacity: 1; }
+html.palette-carbon .brand-logo img,
+section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
+@keyframes brands-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.brands-marquee:hover .brands-track { animation-play-state: paused; }
+@media (max-width: 768px) {
+  .brands-row { gap: 48px; padding-right: 48px; }
+}
 </style>
 </head>
 <body>
@@ -559,15 +622,9 @@ section.sec.dark .faq-q { color: #ffffff; }
   -->
   <div class="hero-stamp" id="hero-stamp">NOTHING AI</div>
   <div class="hero-foot">
-    <div class="hero-foot-left">
-      <span data-i18n="hero.tagline">Estetik kontent yaratishga&nbsp;tizimli yondashuv</span>
-      <a href="#contact" class="hero-cta" data-i18n="hero.cta">Bog‘lanish</a>
-    </div>
+    <div class="hero-foot-left"></div>
     <div class="hero-foot-center" data-i18n="hero.scroll">↓ Skroll</div>
-    <div class="hero-foot-right">
-      <span data-i18n="hero.line1">Tajribangizni</span>
-      <span data-i18n="hero.line2">raqamlashtiramiz</span>
-    </div>
+    <div class="hero-foot-right"></div>
   </div>
 </section>
 
@@ -636,7 +693,7 @@ section.sec.dark .faq-q { color: #ffffff; }
   <div class="services-grid">
     <div class="service-card" data-reveal>
       <video class="service-video" src="assets/services/s1.mp4" autoplay muted loop playsinline preload="metadata"></video>
-      <div class="service-name" data-i18n="services.s1n">AI raqamli dublikatlar</div>
+      <div class="service-name" data-i18n="services.s1n">Raqamli dublikatlar</div>
       <div class="service-desc" data-i18n="services.s1d">Bitta suratga olish — biz siz uchun ijtimoiy tarmoqlaringizda istalgan tillarda kontent yaratishda foydalanadigan raqamli dublikat olasiz.</div>
       <ul class="service-features">
         <li data-i18n="services.s1f1">— Dalilga asoslangan tibbiyotga asoslangan ssenariylar</li>
@@ -646,7 +703,7 @@ section.sec.dark .faq-q { color: #ffffff; }
     </div>
     <div class="service-card" data-reveal>
       <video class="service-video" src="assets/services/s2.mp4" autoplay muted loop playsinline preload="metadata"></video>
-      <div class="service-name" data-i18n="services.s2n">AI seriallar</div>
+      <div class="service-name" data-i18n="services.s2n">Seriallar</div>
       <div class="service-desc" data-i18n="services.s2d">Doimiy yuz, ovoz va xarakterga ega noyob AI personajlar. Brend qadriyatlari uchun vertikal seriallar.</div>
       <ul class="service-features">
         <li data-i18n="services.s2f1">— Syujetning har bir qismi mahsulot yoki xizmatingizni ochib beradi</li>
@@ -730,6 +787,38 @@ section.sec.dark .faq-q { color: #ffffff; }
   <div class="pricing-note" data-i18n="pricing.note">Aniq smetani loyihangiz uchun muhokama paytida individual hisoblaymiz</div>
 </section>
 
+<section class="sec brands-sec" id="brands">
+  <h3 class="brands-title" data-i18n="brands.title">Bizga ishonadilar</h3>
+  <div class="brands-marquee" aria-hidden="false">
+    <div class="brands-track">
+      <div class="brands-row">
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+      </div>
+      <div class="brands-row" aria-hidden="true">
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b1.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b2.jpeg" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b3.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b4.png" alt=""></div>
+        <div class="brand-logo"><img src="assets/brands/b5.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec dark" id="faq">
   <div class="sec-head" data-reveal>
     <div class="sec-num"></div>
@@ -761,7 +850,7 @@ section.sec.dark .faq-q { color: #ffffff; }
     <div class="contact-info">
       <div class="contact-name">АНДРЕЙ</div>
       <a href="tel:+998901784627">+998 90 178 46 27</a>
-      <a href="/cdn-cgi/l/email-protection#91f3e4fae7f0bfe4ebd1f6fcf0f8fdbff2fefc" class="no-cfemail"><span class="__cf_email__" data-cfemail="6624332d302748333c26212b272f2a4825292b">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#6301160815024d161923040e020a0f4d000c0e" class="no-cfemail"><span class="__cf_email__" data-cfemail="3b796e706d7a156e617b7c767a727715787476">[email&#160;protected]</span></a>
       <a href="https://t.me/andreyvernadski" class="contact-tg-btn" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
@@ -794,9 +883,9 @@ const T = {
     'problems.p2t':'Съёмка — это хлопоты','problems.p2d':'Оператор, свет, студия, расписание — отдельная работа, которую никто не хочет делать.',
     'problems.p3t':'Конкуренты уже там','problems.p3d':'Пока вы без контента, другие клиники набирают пациентов через соцсети.',
     'services.title':'Наши услуги','services.sub':'',
-    'services.s1n':'AI-цифровые двойники','services.s1d':'Одна съёмка — получаете цифрового двойника, которого мы используем для создания контента в ваших соцсетях на любых языках.',
+    'services.s1n':'Цифровые двойники','services.s1d':'Одна съёмка — получаете цифрового двойника, которого мы используем для создания контента в ваших соцсетях на любых языках.',
     'services.s1f1':'— Сценарии на основе доказательной медицины','services.s1f2':'— Премиум-постпродакшн под ключ',
-    'services.s2n':'AI-сериалы','services.s2d':'Уникальные AI-персонажи с постоянной внешностью, характером и голосом. Вертикальные сериалы под ценности бренда.',
+    'services.s2n':'Сериалы','services.s2d':'Уникальные AI-персонажи с постоянной внешностью, характером и голосом. Вертикальные сериалы под ценности бренда.',
     'services.s2f1':'— Каждая серия сюжета раскрывает ваш продукт или услугу','services.s2f2':'— Органические охваты','services.s2f3':'— Конверсия 5–15% в подписку',
     'services.s3n':'Продуктовое видео','services.s3d':'Создание индивидуального ролика с вашим продуктом на уровне высококачественного продакшна — нативно, кинематографично и без шаблонной рекламы.',
     'services.s3f1':'— Демонстрация сильных сторон вашего продукта','services.s3f2':'— Визуальный стиль на основе вашего брендбука','services.s3f3':'— Различные форматы видео под наружную рекламу и соцсети',
@@ -812,6 +901,7 @@ const T = {
     'pricing.p2name':'Пакет Микс','pricing.p2period':'Стоимость обсуждается индивидуально',
     'pricing.p2f1':'20 обычных + 10 премиум роликов','pricing.p2f2':'Премиум: имиджевое · AI-кадры','pricing.p2f3':'Сценарии и согласование','pricing.p2f4':'AI-генерация и постпродакшн','pricing.p2f5':'Рекомендуем сотрудничество от 3 месяцев',
     'pricing.cta2':'Связаться','pricing.note':'Точную смету мы рассчитываем индивидуально под ваш проект во время обсуждения',
+    'brands.title':'— Нам доверяют',
     'faq.title':'Часто задаваемые вопросы',
     'faq.q1':'Как работает AI-аватар?','faq.a1':'Один раз снимаем вас на камеру — лицо, голос, мимику. Создаём цифровую копию. Дальше аватар воспроизводит любой текст с вашей внешностью без вашего участия.',
     'faq.q2':'Сколько занимает запуск?','faq.a2':'После подписания договора и оплаты — 2 недели на согласование форматов, создание аватара и согласование сценариев. Затем начинается продакшн. Первый пакет готов за месяц.',
@@ -832,9 +922,9 @@ const T = {
     'problems.p2t':'Suratga olish — bosh og‘rig‘i','problems.p2d':'Operator, yorug‘lik, studiya, jadval — hech kim olishni xohlamaydigan alohida ish.',
     'problems.p3t':'Raqobatchilar allaqachon u yerda','problems.p3d':'Siz kontentsiz turganda, boshqa klinikalar ijtimoiy tarmoqlar orqali bemorlarni jalb qilmoqda.',
     'services.title':'Xizmatlarimiz','services.sub':'',
-    'services.s1n':'AI raqamli dublikatlar','services.s1d':'Bitta suratga olish — biz siz uchun ijtimoiy tarmoqlaringizda istalgan tillarda kontent yaratishda foydalanadigan raqamli dublikat olasiz.',
+    'services.s1n':'Raqamli dublikatlar','services.s1d':'Bitta suratga olish — biz siz uchun ijtimoiy tarmoqlaringizda istalgan tillarda kontent yaratishda foydalanadigan raqamli dublikat olasiz.',
     'services.s1f1':'— Dalilga asoslangan tibbiyotga asoslangan ssenariylar','services.s1f2':'— Kalit topshirilgan premium postprodakshn',
-    'services.s2n':'AI seriallar','services.s2d':'Doimiy yuz, ovoz va xarakterga ega noyob AI personajlar. Brend qadriyatlari uchun vertikal seriallar.',
+    'services.s2n':'Seriallar','services.s2d':'Doimiy yuz, ovoz va xarakterga ega noyob AI personajlar. Brend qadriyatlari uchun vertikal seriallar.',
     'services.s2f1':'— Syujetning har bir qismi mahsulot yoki xizmatingizni ochib beradi','services.s2f2':'— Organik qamrov','services.s2f3':'— Obunaga 5–15% konversiya',
     'services.s3n':'Mahsulot videosi','services.s3d':'Mahsulotingiz ishtirokida yuqori sifatli prodakshn darajasidagi individual rolik yaratish — tabiiy, kinematografik va shablon reklamalarsiz.',
     'services.s3f1':'— Mahsulotingizning kuchli tomonlarini namoyish etish','services.s3f2':'— Brendbukingiz asosidagi vizual uslub','services.s3f3':'— Tashqi reklama va ijtimoiy tarmoqlar uchun turli video formatlari',
@@ -845,11 +935,12 @@ const T = {
     'process.s4n':'Yetkazib berish','process.s4d':'Birinchi paket 7 kun ichida. Keyin — har oy jadval bo‘yicha.',
     'pricing.title':'Bir oy ish&nbsp;evaziga nima beramiz',
     'pricing.p1name':'Standart paket','pricing.p1period':'Narx individual muhokama qilinadi',
-    'pricing.p1f1':'30 ta oddiy rolik (45 soniya)','pricing.p1f2':'Reels · TikTok · Shorts','pricing.p1f3':'Ssenariylar va kelishuv','pricing.p1f4':'AI generatsiya va postprodakshn','pricing.p1f5':'3 oydan boshlab hamkorlikni tavsiya qilamiz',
+    'pricing.p1f1':'30 ta standart rolik (45 soniya)','pricing.p1f2':'Reels · TikTok · Shorts','pricing.p1f3':'Ssenariylar va kelishuv','pricing.p1f4':'AI generatsiya va postprodakshn','pricing.p1f5':'3 oydan boshlab hamkorlikni tavsiya qilamiz',
     'pricing.cta1':'Bog‘lanish',
     'pricing.p2name':'Miks paket','pricing.p2period':'Narx individual muhokama qilinadi',
     'pricing.p2f1':'20 oddiy + 10 premium rolik','pricing.p2f2':'Premium: imij · AI kadrlar','pricing.p2f3':'Ssenariylar va kelishuv','pricing.p2f4':'AI generatsiya va postprodakshn','pricing.p2f5':'3 oydan boshlab hamkorlikni tavsiya qilamiz',
     'pricing.cta2':'Bog‘lanish','pricing.note':'Aniq smetani loyihangiz uchun muhokama paytida individual hisoblaymiz',
+    'brands.title':'— Bizga ishonadilar',
     'faq.title':'Tez-tez beriladigan savollar',
     'faq.q1':'AI avatar qanday ishlaydi?','faq.a1':'Sizni bir marta kameraga olamiz — yuz, ovoz, mimika. Raqamli nusxa yaratamiz. So‘ng avatar ishtirokingizsiz istalgan matnni sizning qiyofangizda gapirib beradi.',
     'faq.q2':'Ishga tushirish qancha vaqt oladi?','faq.a2':'Shartnoma imzolanib, to‘lov amalga oshirilgandan so‘ng — formatlarni kelishish, avatar yaratish va ssenariylarni tasdiqlashga 2 hafta. So‘ng prodakshn boshlanadi. Birinchi paket bir oy ichida tayyor.',
