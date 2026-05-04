@@ -218,8 +218,11 @@ section.sec { padding: 72px 24px; border-top: 1px solid var(--line); }
 /* CASES */
 .cases-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
 .case-card {
   cursor: pointer;
@@ -237,6 +240,28 @@ section.sec { padding: 72px 24px; border-top: 1px solid var(--line); }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
+  display: block;
+}
+.case-thumb iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: none; /* клик идёт на карточку, открывая модалку */
+}
+.case-vk {
+  position: relative;
+  width: 100%;
+  /* VK clip_ext = видео 9:16 + футер с кнопкой "Смотреть в VK".
+     Подбираем пропорцию, чтобы плеер сел ровно, без черных полос и обрезок. */
+  aspect-ratio: 9 / 19.2;
+  background: #000;
+  overflow: hidden;
+}
+.case-vk iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
   display: block;
 }
 .case-play {
@@ -638,23 +663,17 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
     </div>
   </div>
   <div class="cases-grid">
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/8vn2p2kABMo">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/8vn2p2kABMo/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239018&autoplay=1&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/watch?v=7ktkNKpL8G0">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/7ktkNKpL8G0/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239024&autoplay=1&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/V62DfAAUvNY">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/V62DfAAUvNY/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239022&autoplay=1&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/c537PtoyK08">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/c537PtoyK08/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
-    </div>
-    <div class="case-card" data-reveal data-url="https://youtube.com/shorts/8Q1TwLIHQco">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/8Q1TwLIHQco/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
-    </div>
-    <div class="case-card" data-reveal data-url="https://www.youtube.com/shorts/MxDfJpgLs_A">
-      <div class="case-thumb"><img src="https://img.youtube.com/vi/MxDfJpgLs_A/hqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="case-play"></span></div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239021&autoplay=1&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -851,7 +870,7 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
     <h2 class="contact-heading" data-i18n="contact.heading">Связаться<br>со&nbsp;студией</h2>
     <div class="contact-info">
       <div class="contact-name" data-i18n="contact.name">САНЖ</div>
-      <a href="/cdn-cgi/l/email-protection#f685979a9385b69899829e9f9891979fd88483" class="no-cfemail"><span class="__cf_email__" data-cfemail="80d3c1ccc5d3c0cecfd4c8c9cec7c1c9aed2d5">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#ccbfada0a9bf8ca2a3b8a4a5a2abada5e2beb9" class="no-cfemail"><span class="__cf_email__" data-cfemail="ce9d8f828b9d8e80819a868780898f87e09c9b">[email&#160;protected]</span></a>
       <a href="https://t.me/tthaSanzh" class="contact-tg-btn" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
@@ -978,11 +997,21 @@ function getYouTubeId(url) {
   const m = url.match(/(?:shorts\/|v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   return m ? m[1] : null;
 }
+function buildEmbedUrl(card) {
+  const url = card.dataset.url || '';
+  const source = card.dataset.source || '';
+  if (source === 'vk' || /vk(?:video)?\.(?:com|ru)|vkvideo\.ru/.test(url)) {
+    // VK: используем готовый clip_ext.php / video_ext.php URL как есть, добавим autoplay если нет
+    return url.includes('autoplay=') ? url : url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+  }
+  const id = getYouTubeId(url);
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0` : null;
+}
 document.querySelectorAll('.case-card').forEach(card => {
   card.addEventListener('click', () => {
-    const id = getYouTubeId(card.dataset.url || '');
-    if (!id) return;
-    videoIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    const embed = buildEmbedUrl(card);
+    if (!embed) return;
+    videoIframe.src = embed;
     videoModal.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
