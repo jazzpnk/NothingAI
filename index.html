@@ -219,7 +219,7 @@ section.sec { padding: 72px 24px; border-top: 1px solid var(--line); }
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 40px;
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
@@ -252,8 +252,6 @@ section.sec { padding: 72px 24px; border-top: 1px solid var(--line); }
 .case-vk {
   position: relative;
   width: 100%;
-  /* VK clip_ext = видео 9:16 + футер с кнопкой "Смотреть в VK".
-     Подбираем пропорцию, чтобы плеер сел ровно, без черных полос и обрезок. */
   aspect-ratio: 9 / 19.2;
   background: #000;
   overflow: hidden;
@@ -628,10 +626,6 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
   <div class="nav-right">
     <a href="#cases" data-i18n="nav.work">Работы</a>
     <a href="#contact" data-i18n="nav.contact">Контакты</a>
-    <span class="lang-toggle">
-      <button class="lang-btn active" data-lang="ru">RU</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </span>
   </div>
 </nav>
 
@@ -675,29 +669,17 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
     <div class="case-vk" data-reveal>
       <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239021&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-  </div>
-</section>
-
-<section class="sec dark" id="problems">
-  <div class="sec-head" data-reveal>
-    <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="problems.title">Врач не может вести блог сам — и&nbsp;это нормально</h2>
-  </div>
-  <div class="problems-grid">
-    <div class="problem-item" data-reveal>
-      <div class="problem-num">— 01</div>
-      <div class="problem-title" data-i18n="problems.p1t">Нет времени</div>
-      <div class="problem-desc" data-i18n="problems.p1d">Вы лечите пациентов, а не снимаете видео. На контент не остаётся ни времени, ни сил.</div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239019&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="problem-item" data-reveal>
-      <div class="problem-num">— 02</div>
-      <div class="problem-title" data-i18n="problems.p2t">Съёмка — это хлопоты</div>
-      <div class="problem-desc" data-i18n="problems.p2d">Оператор, свет, студия, расписание — отдельная работа, которую никто не хочет делать.</div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239023&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="problem-item" data-reveal>
-      <div class="problem-num">— 03</div>
-      <div class="problem-title" data-i18n="problems.p3t">Конкуренты уже там</div>
-      <div class="problem-desc" data-i18n="problems.p3d">Пока вы без контента, другие клиники набирают пациентов через соцсети.</div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239018&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="case-vk" data-reveal>
+      <iframe src="https://vkvideo.ru/clip_ext.php?oid=-238373790&id=456239024&loop=1&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -744,69 +726,6 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
   </div>
 </section>
 
-<section class="sec dark" id="process">
-  <div class="sec-head" data-reveal>
-    <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="process.title">Ваш путь от подписи до&nbsp;регулярного контента</h2>
-  </div>
-  <div class="process-grid">
-    <div class="process-item" data-reveal>
-      <div class="process-step-num">— 01</div>
-      <div class="process-step-name" data-i18n="process.s1n">Подписание</div>
-      <div class="process-step-desc" data-i18n="process.s1d">Фиксируем объём, сроки и формат. Работа начинается в день оплаты.</div>
-    </div>
-    <div class="process-item" data-reveal>
-      <div class="process-step-num">— 02</div>
-      <div class="process-step-name" data-i18n="process.s2n">Сценарии</div>
-      <div class="process-step-desc" data-i18n="process.s2d">Пишем скрипты, хуки и структуру каждого ролика под задачи бизнеса.</div>
-    </div>
-    <div class="process-item" data-reveal>
-      <div class="process-step-num">— 03</div>
-      <div class="process-step-name" data-i18n="process.s3n">Аватары</div>
-      <div class="process-step-desc" data-i18n="process.s3d">Снимаем лицо бренда в студии или в клинике. Превращаем в AI-аватар.</div>
-    </div>
-    <div class="process-item" data-reveal>
-      <div class="process-step-num">— 04</div>
-      <div class="process-step-name" data-i18n="process.s4n">Доставка</div>
-      <div class="process-step-desc" data-i18n="process.s4d">Регулярная подача и публикация согласованного контента.</div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="pricing">
-  <div class="sec-head" data-reveal>
-    <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="pricing.title">Наше предложение</h2>
-  </div>
-  <div class="pricing-grid">
-    <div class="pricing-card" data-reveal>
-      <div class="pricing-name" data-i18n="pricing.p1name">Пакет Стандарт</div>
-      <div class="pricing-period" data-i18n="pricing.p1period">Стоимость обсуждается индивидуально</div>
-      <ul class="pricing-features">
-        <li data-i18n="pricing.p1f1">30 стандартных роликов (45 сек.)</li>
-        <li data-i18n="pricing.p1f2">Reels · TikTok · Shorts</li>
-        <li data-i18n="pricing.p1f3">Сценарии и согласование</li>
-        <li data-i18n="pricing.p1f4">AI-генерация и постпродакшн</li>
-        <li data-i18n="pricing.p1f5">Рекомендуем сотрудничество от 3 месяцев</li>
-      </ul>
-      <a href="#contact" class="pricing-cta" data-i18n="pricing.cta1">Связаться</a>
-    </div>
-    <div class="pricing-card" data-reveal>
-      <div class="pricing-name" data-i18n="pricing.p2name">Пакет Микс</div>
-      <div class="pricing-period" data-i18n="pricing.p2period">Стоимость обсуждается индивидуально</div>
-      <ul class="pricing-features">
-        <li data-i18n="pricing.p2f1">20 стандартных + 10 премиум роликов</li>
-        <li data-i18n="pricing.p2f2">Премиум: имиджевое · AI-кадры</li>
-        <li data-i18n="pricing.p2f3">Сценарии и согласование</li>
-        <li data-i18n="pricing.p2f4">AI-генерация и постпродакшн</li>
-        <li data-i18n="pricing.p2f5">Рекомендуем сотрудничество от 3 месяцев</li>
-      </ul>
-      <a href="#contact" class="pricing-cta" data-i18n="pricing.cta2">Связаться</a>
-    </div>
-  </div>
-  <div class="pricing-note" data-i18n="pricing.note">Точную смету мы рассчитываем индивидуально под ваш проект</div>
-</section>
-
 <section class="sec brands-sec" id="brands">
   <h3 class="brands-title" data-i18n="brands.title">Нам доверяют</h3>
   <div class="brands-marquee" aria-hidden="false">
@@ -840,37 +759,12 @@ section.sec.dark .brand-logo img { filter: invert(1) brightness(1.2); }
   </div>
 </section>
 
-<section class="sec dark" id="faq">
-  <div class="sec-head" data-reveal>
-    <div class="sec-num"></div>
-    <h2 class="sec-title" data-i18n="faq.title">Часто задаваемые вопросы</h2>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item" data-reveal>
-      <div class="faq-q" data-i18n="faq.q1">Как работает AI-аватар?</div>
-      <div class="faq-a" data-i18n="faq.a1">Один раз снимаем вас на камеру — лицо, голос, мимику. Создаём цифровую копию. Дальше аватар воспроизводит любой текст с вашей внешностью без вашего участия.</div>
-    </div>
-    <div class="faq-item" data-reveal>
-      <div class="faq-q" data-i18n="faq.q2">Сколько занимает запуск?</div>
-      <div class="faq-a" data-i18n="faq.a2">После подписания договора и оплаты — 2 недели на согласование форматов, создание аватара и согласование сценариев. Затем начинается продакшн. Первый пакет готов за месяц.</div>
-    </div>
-    <div class="faq-item" data-reveal>
-      <div class="faq-q" data-i18n="faq.q3">Сколько это стоит?</div>
-      <div class="faq-a" data-i18n="faq.a3">Стоимость рассчитывается индивидуально под объём и формат проекта. Расскажите о задаче — пришлём точную смету. Минимальный срок — 3 месяца.</div>
-    </div>
-    <div class="faq-item" data-reveal>
-      <div class="faq-q" data-i18n="faq.q4">Нужна ли студийная съёмка?</div>
-      <div class="faq-a" data-i18n="faq.a4">Только один раз — для создания аватара. Можем приехать в офис или организовать съёмку. После этого никаких съёмочных групп.</div>
-    </div>
-  </div>
-</section>
-
 <section class="sec" id="contact">
   <div class="contact-top" data-reveal>
     <h2 class="contact-heading" data-i18n="contact.heading">Связаться<br>со&nbsp;студией</h2>
     <div class="contact-info">
       <div class="contact-name" data-i18n="contact.name">САНЖ</div>
-      <a href="/cdn-cgi/l/email-protection#0a796b666f794a64657e6263646d6b6324787f" class="no-cfemail"><span class="__cf_email__" data-cfemail="ca998b868f998a84859e8283848d8b83e4989f">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#deadbfb2bbad9eb0b1aab6b7b0b9bfb7f0acab" class="no-cfemail"><span class="__cf_email__" data-cfemail="441705080117040a0b100c0d0a03050d6a1611">[email&#160;protected]</span></a>
       <a href="https://t.me/tthaSanzh" class="contact-tg-btn" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
@@ -972,8 +866,7 @@ const T = {
   }
 };
 
-let currentLang = localStorage.getItem('lang');
-if (!currentLang || !T[currentLang]) currentLang = 'ru';
+let currentLang = 'ru';
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
